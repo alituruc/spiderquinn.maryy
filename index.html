@@ -6,7 +6,11 @@
 <title>Google</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#fff}
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:white;
+}
 
 /* GOOGLE HOME */
 #googleHome{
@@ -15,160 +19,237 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+padding:20px;
+text-align:center;
 }
-.logo{font-size:70px;font-weight:bold}
-.logo span:nth-child(1){color:#4285F4}
-.logo span:nth-child(2){color:#EA4335}
-.logo span:nth-child(3){color:#FBBC05}
-.logo span:nth-child(4){color:#4285F4}
-.logo span:nth-child(5){color:#34A853}
-.logo span:nth-child(6){color:#EA4335}
 
-.searchBox{margin-top:30px;width:500px;max-width:90%;position:relative}
-.searchBox input{
-width:100%;padding:14px 45px 14px 20px;border-radius:30px;
-border:1px solid #dfe1e5;font-size:16px;
-box-shadow:0 1px 6px rgba(0,0,0,0.2);outline:none;
+.logo{
+font-size:50px;
+font-weight:bold;
+margin-bottom:20px;
 }
-.searchIcon{position:absolute;right:15px;top:12px;color:#777}
+
+.search-box{
+width:100%;
+max-width:500px;
+border:1px solid #ddd;
+border-radius:30px;
+padding:14px 20px;
+font-size:18px;
+outline:none;
+box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
 
 /* RESULTS */
-#resultsPage{display:none}
-.topBar{display:flex;align-items:center;padding:15px 30px;gap:20px;border-bottom:1px solid #ddd}
-.topBar input{width:400px;padding:10px 20px;border-radius:30px;border:1px solid #ddd}
-
-.tabs{display:flex;gap:25px;padding:10px 40px;border-bottom:1px solid #ddd;font-size:14px}
-.tabs div{cursor:pointer;padding-bottom:6px}
-.tabs .active{border-bottom:3px solid #1a73e8;color:#1a73e8;font-weight:bold}
-
-.section{display:none;padding:40px}
-.section.active{display:block}
-
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.card img,.card video{width:100%;border-radius:10px;cursor:pointer}
-.fakeLink{font-size:13px;color:#1a0dab}
-
-/* MODAL */
-#modal{
-display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.9);justify-content:center;align-items:center;
+#results{
+display:none;
+padding:15px;
 }
-#modal img,#modal video{max-width:90%;max-height:90%}
 
-/* ZARF */
+.tabs{
+display:flex;
+gap:20px;
+border-bottom:1px solid #ddd;
+padding-bottom:10px;
+margin-bottom:20px;
+font-size:14px;
+overflow-x:auto;
+}
+
+.tab{
+cursor:pointer;
+padding-bottom:5px;
+white-space:nowrap;
+}
+
+.active{
+color:#1a73e8;
+font-weight:bold;
+border-bottom:2px solid #1a73e8;
+}
+
+.section{ display:none; }
+.section.active{ display:block; }
+
+/* PHOTO GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:12px;
+}
+
+.grid img, .grid video{
+width:100%;
+border-radius:10px;
+cursor:pointer;
+}
+
+.link{
+font-size:12px;
+color:#1a0dab;
+word-break:break-all;
+}
+
+/* FULLSCREEN */
+#fullscreen{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+#fullscreen img, #fullscreen video{
+max-width:95%;
+max-height:95%;
+}
+
+/* ENVELOPE */
 .envelope{
-width:260px;height:180px;background:#ea4335;margin:40px auto;
-position:relative;cursor:pointer;border-radius:8px;
+width:220px;
+height:140px;
+background:#d4af37;
+margin:60px auto;
+position:relative;
+cursor:pointer;
+border-radius:8px;
 }
+
 .envelope:before{
-content:"";position:absolute;top:0;left:0;
-border-left:130px solid transparent;
-border-right:130px solid transparent;
-border-top:90px solid #ff6f61;
-transition:0.5s;
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#c49b2e;
+clip-path:polygon(0 0,50% 60%,100% 0);
 }
-.envelope.open:before{transform:rotateX(180deg);top:-90px}
 
-.letter{display:none;max-width:700px;margin:20px auto;font-size:20px;line-height:1.8;direction:rtl}
+/* LETTER */
+.letter{
+display:none;
+background:white;
+padding:20px;
+border-radius:12px;
+white-space:pre-line;
+line-height:1.7;
+font-size:16px;
+}
 
-.spider{position:fixed;top:-50px;width:40px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+/* SPIDERS */
+.spider{
+position:fixed;
+width:45px;
+animation:fall 3s linear forwards;
+z-index:10000;
+}
+
+@keyframes fall{
+0%{ top:-60px; }
+100%{ top:100vh; }
+}
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<!-- GOOGLE -->
+<!-- GOOGLE HOME -->
 <div id="googleHome">
-<div class="logo">
-<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
-</div>
-<div class="searchBox">
-<input type="text" id="searchInput">
-<div class="searchIcon">🔍</div>
-</div>
+<div class="logo">Google</div>
+<input id="searchInput" class="search-box" type="text">
 </div>
 
 <!-- RESULTS -->
-<div id="resultsPage">
-
-<div class="topBar">
-<div class="logo" style="font-size:30px;">
-<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
-</div>
-<input type="text" value="ekmek yiyen köpek">
-</div>
+<div id="results">
 
 <div class="tabs">
-<div class="tab active" onclick="showSection('all',this)">Tümü</div>
-<div class="tab" onclick="showSection('photos',this)">Fotoğraflar</div>
-<div class="tab" onclick="showSection('about',this)">Hakkında</div>
-<div class="tab" onclick="showSection('letter',this)">Mektup</div>
+<div class="tab active" onclick="showTab('all',event)">Tümü</div>
+<div class="tab" onclick="showTab('photos',event)">Fotoğraflar</div>
+<div class="tab" onclick="showTab('letter',event)">Mektup</div>
 </div>
 
-<!-- TÜMÜ -->
+<!-- ALL -->
 <div id="all" class="section active">
-<h2>Mary</h2>
-<p><b>18 yaşında, Kürt 🤍</b></p>
-<p>Gezmeyi sever, kahverengini ve kahveyi çok sever ☕🤎</p>
-<p>Kitap okumayı sever.</p>
-<p>Yabancı şarkılar dinler.</p>
-<p>Almanca, Fransızca ve Kürtçe bilir.</p>
-<p>K-Drama izlemeyi sever.</p>
-<p>Kendine obez diyor ama değil.</p>
-<p>Fiziği güzel. Kendisi de güzel.</p>
-<p>Bazen kendini sevmez ama aslında düşündüğünden çok daha güzel biri.</p>
+<h2>Mary (18)</h2>
+<p>Mary, 18 yaşında Kürt bir kızdır.</p>
+<p>Kahverengini ve kahveyi çok sever ☕🤎</p>
+<p>Gezmeyi sever, yabancı şarkılar dinler.</p>
+<p>Almanca, Fransızca ve Kürtçe biliyor.</p>
+<p>K-drama bağımlısıdır.</p>
+<p>Kendine “obezim” der ama hiç alakası yok. Gayet güzel fiziği var ve kendisi de güzel.</p>
+<p>Bazen kendini sevmez ama dışarıdan bakınca etkileyici biridir.</p>
+<p>Kitap okumayı çok sever ve hedefi hukuk kazanmaktır.</p>
+<p><b>En büyük korkusu:</b> Örümcekler 🕷️</p>
 </div>
 
-<!-- FOTOĞRAFLAR -->
+<!-- PHOTOS -->
 <div id="photos" class="section">
 <div class="grid">
 
 <script>
 for(let i=1;i<=9;i++){
 document.write(`
-<div class="card">
-<img src="foto${i}.jpg" onclick="openModal(this.src)">
-<div class="fakeLink">https://ekmek.yiyen.kopek.com/foto${i}</div>
-</div>`);
+<div>
+<img src="foto${i}.jpg" onclick="openFullscreen(this.src)">
+<div class="link">https://ekmek.yiyen.kopek.com</div>
+</div>
+`);
 }
 </script>
 
-<div class="card">
-<video src="video.mp4" controls onclick="openModal(this.currentSrc)"></video>
-<div class="fakeLink">https://ekmek.yiyen.kopek.com/video</div>
+<div>
+<video src="video.mp4" controls onclick="openFullscreen(this.src)"></video>
+<div class="link">https://ekmek.yiyen.kopek.com</div>
 </div>
 
 </div>
 </div>
 
-<!-- HAKKINDA -->
-<div id="about" class="section">
-<p>Mary bazen kendini göremiyor ama dışarıdan bakınca hem kalbi hem enerjisi hem görüntüsü güzel biri.</p>
-</div>
+<!-- LETTER -->
+<div id="letter" class="section" style="text-align:center;">
 
-<!-- MEKTUP -->
-<div id="letter" class="section">
-<h2>Mektup</h2>
-<div class="envelope" onclick="openLetter(this)"></div>
+<div id="envelope" class="envelope" onclick="openLetter()"></div>
 
-<div class="letter" id="letterText">
-ئێمه‌ نوێ ناسین، بەڵام من زۆر حەزم لە قسەکانتە...  
+<div id="letterText" class="letter">
+ئێمه‌ نوێ ناسین، بەڵام من زۆر حەزم لە قسەکانتە.
+ڕاستی، لەو ئەپە بێمانایەی کە لێی ناسین، تۆ ڕاستترین کەسیت کە من ناسیم.
+بڕوا بکە، وام دەڵێم ئێمە وەک دوو برا-خوشکی ونبووین 😜
+لەوانەیەش نیوە-برا-خوشک بین 🙄
+هەرچۆنێک بێت… هیوادارم لە ئینگلیستان دیپۆرت نەکرێیت!
+هێشتا دێمە گەڕەکی ئێوە 😏
+هیوادارم هەموو تاقیکردنەوەکانت وەک دەتەوێت تێپەڕبن.
+بە هیوای من ببیتە ئەنجەمە ئەنجەمە باشترین پارێزەر.
+من باوەڕم پێتە — بەڕاستی 😌
+سەرکەوتن!
 بزانە کە خۆشەویست دەکرێیت 🤍😜🤟🏻
 </div>
-</div>
 
 </div>
 
-<!-- MODAL -->
-<div id="modal" onclick="closeModal()"></div>
+</div>
+
+<!-- FULLSCREEN -->
+<div id="fullscreen" onclick="closeFullscreen()"></div>
 
 <script>
 
-/* GOOGLE YAZMA */
+/* MUSIC MOBILE FIX */
+const music = document.getElementById("music");
+document.body.addEventListener("click", () => {
+music.play().catch(()=>{});
+},{ once:true });
+
+/* AUTO TYPE */
 let text="ekmek yiyen köpek";
 let i=0;
 let input=document.getElementById("searchInput");
@@ -179,49 +260,53 @@ input.value+=text.charAt(i);
 i++;
 setTimeout(type,100);
 }else{
-setTimeout(()=>{
-document.getElementById("googleHome").style.display="none";
-document.getElementById("resultsPage").style.display="block";
-},1200);
+setTimeout(showResults,800);
 }
 }
-type();
+window.onload=type;
 
-/* TAB */
-function showSection(id,el){
+/* SHOW RESULTS */
+function showResults(){
+document.getElementById("googleHome").style.display="none";
+document.getElementById("results").style.display="block";
+}
+
+/* TABS */
+function showTab(id,e){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-el.classList.add("active");
+e.target.classList.add("active");
 }
 
-/* MODAL */
-function openModal(src){
-let modal=document.getElementById("modal");
-modal.style.display="flex";
+/* FULLSCREEN */
+function openFullscreen(src){
+let fs=document.getElementById("fullscreen");
+fs.style.display="flex";
 if(src.includes(".mp4")){
-modal.innerHTML=`<video src="${src}" controls autoplay></video>`;
+fs.innerHTML=`<video src="${src}" controls autoplay></video>`;
 }else{
-modal.innerHTML=`<img src="${src}">`;
+fs.innerHTML=`<img src="${src}">`;
 }
 }
-function closeModal(){document.getElementById("modal").style.display="none"}
+function closeFullscreen(){
+document.getElementById("fullscreen").style.display="none";
+}
 
-/* ZARF */
-function openLetter(el){
-el.classList.add("open");
+/* LETTER */
+function openLetter(){
+document.getElementById("envelope").style.display="none";
 document.getElementById("letterText").style.display="block";
-for(let i=0;i<30;i++){
+
+for(let i=0;i<25;i++){
 let spider=document.createElement("img");
 spider.src="spider.jpeg";
 spider.className="spider";
 spider.style.left=Math.random()*100+"vw";
-spider.style.animationDuration=(3+Math.random()*3)+"s";
 document.body.appendChild(spider);
-setTimeout(()=>{spider.remove();},6000);
+setTimeout(()=>{spider.remove()},3000);
 }
 }
-
 </script>
 
 </body>
