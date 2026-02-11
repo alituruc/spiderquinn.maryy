@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google</title>
+
+<style>
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:#fff;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* LOGO */
+.logo{
+font-size:70px;
+margin-top:100px;
+letter-spacing:-3px;
+font-weight:bold;
+}
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#4285F4;}
+.logo span:nth-child(5){color:#34A853;}
+.logo span:nth-child(6){color:#EA4335;}
+
+/* SEARCH */
+.search-container{
+margin-top:30px;
+display:flex;
+justify-content:center;
+}
+.search-box{
+display:flex;
+align-items:center;
+border:1px solid #ddd;
+border-radius:30px;
+padding:10px 15px;
+width:600px;
+max-width:90%;
+box-shadow:0 1px 6px rgba(32,33,36,.28);
+}
+.search-box input{
+border:none;
+outline:none;
+flex:1;
+font-size:16px;
+}
+.search-icon{
+margin-right:10px;
+color:#5f6368;
+}
+
+/* TABS */
+.tabs{
+margin-top:30px;
+display:none;
+justify-content:center;
+gap:30px;
+border-bottom:1px solid #eee;
+padding-bottom:10px;
+font-size:14px;
+}
+.tab{
+cursor:pointer;
+padding-bottom:5px;
+color:#5f6368;
+}
+.tab.active{
+color:#1a73e8;
+border-bottom:2px solid #1a73e8;
+}
+
+/* SECTIONS */
+.section{
+display:none;
+width:90%;
+max-width:900px;
+margin:30px auto;
+text-align:left;
+animation:fadeIn 1s ease;
+}
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:10px;
+}
+.gallery img{
+width:100%;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* LIGHTBOX */
+#lightbox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+}
+#lightbox img{
+max-width:90%;
+max-height:90%;
+}
+
+/* ENVELOPE */
+.envelope{
+width:260px;
+height:170px;
+background:#f5f5f5;
+margin:40px auto;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ddd 50%,transparent 50%);
+border-radius:10px;
+}
+
+.letter{
+display:none;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+line-height:1.8;
+}
+
+/* SPIDER */
+.spider{
+position:fixed;
+top:-60px;
+animation:fall 5s linear forwards;
+}
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(360deg);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3">
+</audio>
+
+<div class="logo">
+<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+</div>
+
+<div class="search-container">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input id="searchInput" placeholder="Dünyada örümcekten en çok korkan kişi kim?">
+</div>
+</div>
+
+<div class="tabs" id="tabs">
+<div class="tab active" onclick="showSection('all',this)">Tümü</div>
+<div class="tab" onclick="showSection('photos',this)">Fotoğraflar</div>
+<div class="tab" onclick="showSection('about',this)">Hakkında</div>
+<div class="tab" onclick="showSection('letter',this)">Mektup</div>
+</div>
+
+<!-- TÜMÜ -->
+<div id="all" class="section">
+<h2>Dünyada örümcekten en çok korkan insan bulundu!</h2>
+<p><b>Mary</b> 🕷</p>
+<p>ئەو کەسەیە کە کاتێک مێروولە ببینێت، بە سێ زمان هاوار دەکات.</p>
+<p>Mary کچەکی جوانە و زۆر زیرەکە. هەرچەندە لە مێروولە دەترسێت 😌</p>
+</div>
+
+<!-- FOTOĞRAFLAR -->
+<div id="photos" class="section">
+<div class="gallery">
+<img src="foto1.jpg" onclick="openLightbox(this.src)">
+<img src="foto2.jpg" onclick="openLightbox(this.src)">
+<img src="foto3.jpg" onclick="openLightbox(this.src)">
+<img src="foto4.jpg" onclick="openLightbox(this.src)">
+<img src="foto5.jpg" onclick="openLightbox(this.src)">
+<img src="foto6.jpg" onclick="openLightbox(this.src)">
+<img src="foto7.jpg" onclick="openLightbox(this.src)">
+<img src="foto8.jpg" onclick="openLightbox(this.src)">
+<img src="foto9.jpg" onclick="openLightbox(this.src)">
+</div>
+</div>
+
+<!-- HAKKINDA -->
+<div id="about" class="section">
+<p>ناوی: Mary</p>
+<p>لە عێراق لەدایکبووە و ژیانی لە چەند وڵاتێک تاقیکردووەتەوە.</p>
+<p>زمانەکان: کوردی (سۆرانی)، ئەڵمانی، فەرەنسی.</p>
+<p>خۆشەویستی: K-drama، موزیک بیانی، خوێندن.</p>
+<p>ئامانج: بوون بە پارێزەر ⚖</p>
+</div>
+
+<!-- MEKTUP -->
+<div id="letter" class="section">
+
+<div class="envelope" onclick="openLetter()"></div>
+
+<div class="letter" id="letterContent">
+<p>
+ئێمە تازە ناسینمان بەیەکتر کردووە، بەڵام قسەکانت زۆر جوانن.<br><br>
+هیوادارم لە ئینگلتەرا دیپۆرت نەکرێیت 🙏🏻<br><br>
+هیوادارم تاقیکردنەوەکانت بە سەرکەوتوویی تێپەڕێنیت و یاسا وەرگریت ⚖<br><br>
+سەرکەوتوو بیت، خۆشەویست دەکرێیت 💛
+</p>
+</div>
+
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+document.getElementById("tabs").style.display="flex";
+showSection('all');
+document.getElementById("bgMusic").play();
+}
+});
+
+function showSection(id,el){
+document.querySelectorAll('.section').forEach(sec=>sec.style.display='none');
+document.querySelectorAll('.tab').forEach(tab=>tab.classList.remove('active'));
+document.getElementById(id).style.display='block';
+if(el) el.classList.add('active');
+}
+
+function openLightbox(src){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightbox-img").src=src;
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+
+function openLetter(){
+document.getElementById("letterContent").style.display="block";
+spiderRain();
+}
+
+function spiderRain(){
+for(let i=0;i<35;i++){
+let spider=document.createElement("div");
+spider.className="spider";
+spider.style.left=Math.random()*100+"vw";
+spider.innerHTML="<img src='spider.jpeg' width='40'>";
+document.body.appendChild(spider);
+setTimeout(()=>{spider.remove();},5000);
+}
+}
+
+</script>
+
+</body>
+</html>
