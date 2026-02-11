@@ -3,154 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ali'nin Özel Sitesi</title>
+<title>Google</title>
 
 <style>
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#1e1e2f,#2c2c54);
-    color:white;
-    text-align:center;
+margin:0;
+font-family:Arial, sans-serif;
+background:#fff;
 }
 
-/* Menü */
-nav{
-    background: rgba(0,0,0,0.6);
-    padding:15px;
-    position:sticky;
-    top:0;
-}
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
-}
-nav a:hover{
-    color:#ff4d6d;
+/* GOOGLE HOME */
+#googleHome{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
-/* Arama */
-.search-box{
-    margin:20px;
-}
-.search-box input{
-    padding:10px 40px 10px 15px;
-    border-radius:25px;
-    border:none;
-    width:250px;
-}
-.search-box .icon{
-    position:relative;
-    left:-35px;
+.logo{
+font-size:70px;
+font-weight:bold;
 }
 
-/* Bölümler */
-section{
-    padding:60px 20px;
-    min-height:100vh;
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#4285F4;}
+.logo span:nth-child(5){color:#34A853;}
+.logo span:nth-child(6){color:#EA4335;}
+
+.searchBox{
+margin-top:30px;
+width:500px;
+max-width:90%;
+position:relative;
 }
 
-/* Zarf */
+.searchBox input{
+width:100%;
+padding:14px 45px 14px 20px;
+border-radius:30px;
+border:1px solid #dfe1e5;
+font-size:16px;
+box-shadow:0 1px 6px rgba(0,0,0,0.2);
+outline:none;
+}
+
+.searchIcon{
+position:absolute;
+right:15px;
+top:12px;
+font-size:18px;
+color:#777;
+}
+
+/* GOOGLE RESULTS */
+#resultsPage{
+display:none;
+}
+
+.topBar{
+display:flex;
+align-items:center;
+padding:15px 30px;
+gap:20px;
+border-bottom:1px solid #ddd;
+}
+
+.topBar input{
+width:400px;
+padding:10px 20px;
+border-radius:30px;
+border:1px solid #ddd;
+}
+
+.tabs{
+display:flex;
+gap:25px;
+padding:10px 40px;
+border-bottom:1px solid #ddd;
+font-size:14px;
+}
+
+.tabs div{
+cursor:pointer;
+padding-bottom:6px;
+}
+
+.tabs .active{
+border-bottom:3px solid #1a73e8;
+color:#1a73e8;
+font-weight:bold;
+}
+
+.section{
+display:none;
+padding:40px;
+}
+
+.section.active{
+display:block;
+}
+
+/* FOTO GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.grid img{
+width:100%;
+border-radius:10px;
+}
+
+/* ZARF */
 .envelope{
-    width:250px;
-    height:180px;
-    background:#ff4d6d;
-    margin:40px auto;
-    position:relative;
-    cursor:pointer;
-    border-radius:10px;
-    transition:0.5s;
+width:260px;
+height:180px;
+background:#ea4335;
+margin:40px auto;
+position:relative;
+cursor:pointer;
+border-radius:8px;
 }
+
 .envelope:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:0;
-    height:0;
-    border-left:125px solid transparent;
-    border-right:125px solid transparent;
-    border-top:90px solid #ff758f;
-    transition:0.5s;
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-left:130px solid transparent;
+border-right:130px solid transparent;
+border-top:90px solid #ff6f61;
+transition:0.5s;
 }
+
 .envelope.open:before{
-    transform:rotateX(180deg);
-    top:-90px;
+transform:rotateX(180deg);
+top:-90px;
 }
 
 .letter{
-    display:none;
-    background:white;
-    color:black;
-    padding:20px;
-    border-radius:10px;
-    width:80%;
-    margin:20px auto;
-    direction: rtl;
-    font-size:18px;
-    line-height:1.8;
+display:none;
+max-width:700px;
+margin:20px auto;
+font-size:20px;
+line-height:1.8;
+direction:rtl;
 }
 
 .spider{
-    position:fixed;
-    top:-50px;
-    width:40px;
-    animation:fall 4s linear forwards;
+position:fixed;
+top:-50px;
+width:40px;
+animation:fall linear forwards;
 }
 
 @keyframes fall{
-    to{
-        transform: translateY(110vh);
-        opacity:0;
-    }
-}
-
-img.photo{
-    width:250px;
-    border-radius:15px;
-    margin:15px;
+to{transform:translateY(110vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="#home">Tümü</a>
-    <a href="#photos">Fotoğraflar</a>
-    <a href="#about">Hakkında</a>
-    <a href="#letter">Mektup</a>
-</nav>
-
-<div class="search-box">
-    <input type="text" placeholder="Ara...">
-    <span class="icon">🔍</span>
+<!-- GOOGLE ANA -->
+<div id="googleHome">
+<div class="logo">
+<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
 </div>
 
-<section id="home">
-    <h1>Hoş Geldin 🤍</h1>
-    <p>Bu site özel olarak hazırlandı.</p>
-</section>
+<div class="searchBox">
+<input type="text" id="searchInput">
+<div class="searchIcon">🔍</div>
+</div>
+</div>
 
-<section id="photos">
-    <h2>Fotoğraflar</h2>
-    <img src="photo1.jpg" class="photo">
-    <img src="photo2.jpg" class="photo">
-</section>
+<!-- SONUÇ SAYFASI -->
+<div id="resultsPage">
 
-<section id="about">
-    <h2>Hakkında</h2>
-    <p>Bazen saçma bir uygulama en doğru insanı karşına çıkarır 😌</p>
-</section>
+<div class="topBar">
+<div class="logo" style="font-size:30px;">
+<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+</div>
+<input type="text" value="Mary kimdir?">
+</div>
 
-<section id="letter">
-    <h2>Mektup</h2>
+<div class="tabs">
+<div class="tab active" onclick="showSection('all',this)">Tümü</div>
+<div class="tab" onclick="showSection('photos',this)">Fotoğraflar</div>
+<div class="tab" onclick="showSection('about',this)">Hakkında</div>
+<div class="tab" onclick="showSection('letter',this)">Mektup</div>
+</div>
 
-    <div class="envelope" onclick="openLetter(this)"></div>
+<!-- TÜMÜ -->
+<div id="all" class="section active">
+<h2>Mary</h2>
+<p><b>18 yaşında, Kürt 🤍</b></p>
+<p>Gezmeyi sever.</p>
+<p>Yabancı şarkıları sever.</p>
+<p>Almanca, Fransızca ve Kürtçe bilir.</p>
+<p>K-Drama izlemeyi sever.</p>
+<p>Kendine obez diyor ama aslında değil.</p>
+<p>Fiziği güzel. Kendisi de güzel.</p>
+<p>Bazen kendini sevmiyor ama aslında düşündüğünden çok daha güzel biri.</p>
+</div>
 
-    <div class="letter" id="letterText">
+<!-- FOTOĞRAFLAR -->
+<div id="photos" class="section">
+<div class="grid">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+<img src="foto6.jpg">
+<img src="foto7.jpg">
+<img src="foto8.jpg">
+<img src="foto9.jpg">
+</div>
+<br>
+<video controls src="video.mp4" style="width:100%;max-width:600px;"></video>
+<br><br>
+<audio controls src="music.mp3"></audio>
+</div>
+
+<!-- HAKKINDA -->
+<div id="about" class="section">
+<h2>Hakkında</h2>
+<p>Mary bazen kendini olduğundan farklı görüyor.</p>
+<p>Ama dışarıdan bakınca hem karakteri hem fiziği hem de enerjisi güzel biri.</p>
+</div>
+
+<!-- MEKTUP -->
+<div id="letter" class="section">
+<h2>Mektup</h2>
+
+<div class="envelope" onclick="openLetter(this)"></div>
+
+<div class="letter" id="letterText">
 ئێمه‌ نوێ ناسین، بەڵام من زۆر حەزم لە قسەکانتە.  
 ڕاستی، لەو ئەپە بێمانایەی کە لێی ناسین، تۆ ڕاستترین کەسیت کە من ناسیم.  
 بڕوا بکە، وام دەڵێم ئێمە وەک دوو برا-خوشکی ونبووین 😜  
@@ -162,30 +255,56 @@ img.photo{
 من باوەڕم پێتە — بەڕاستی 😌  
 سەرکەوتن!  
 بزانە کە خۆشەویست دەکرێیت 🤍😜🤟🏻
-    </div>
+</div>
 
-</section>
+</div>
+</div>
 
 <script>
+
+/* OTOMATİK YAZMA + ARAMA */
+let text="Mary kimdir?";
+let i=0;
+let input=document.getElementById("searchInput");
+
+function type(){
+if(i<text.length){
+input.value+=text.charAt(i);
+i++;
+setTimeout(type,100);
+}else{
+setTimeout(()=>{
+document.getElementById("googleHome").style.display="none";
+document.getElementById("resultsPage").style.display="block";
+},1200);
+}
+}
+type();
+
+/* TAB */
+function showSection(id,el){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+el.classList.add("active");
+}
+
+/* ZARF */
 function openLetter(el){
-    el.classList.add("open");
-    document.getElementById("letterText").style.display="block";
-    spiderRain();
+el.classList.add("open");
+document.getElementById("letterText").style.display="block";
+for(let i=0;i<30;i++){
+let spider=document.createElement("img");
+spider.src="spider.jpeg";
+spider.className="spider";
+spider.style.left=Math.random()*100+"vw";
+spider.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(spider);
+setTimeout(()=>{spider.remove();},6000);
+}
 }
 
-function spiderRain(){
-    for(let i=0;i<20;i++){
-        let spider=document.createElement("img");
-        spider.src="spider.jpeg";
-        spider.className="spider";
-        spider.style.left=Math.random()*100+"vw";
-        spider.style.animationDuration=(3+Math.random()*3)+"s";
-        document.body.appendChild(spider);
-
-        setTimeout(()=>{spider.remove();},6000);
-    }
-}
 </script>
 
 </body>
-  </html>
+    </html>
