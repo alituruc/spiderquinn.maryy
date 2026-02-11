@@ -10,6 +10,7 @@ body{
 margin:0;
 font-family:Arial, sans-serif;
 background:white;
+color:black;
 }
 
 /* GOOGLE HOME */
@@ -24,48 +25,59 @@ text-align:center;
 }
 
 .logo{
-font-size:50px;
+font-size:70px;
 font-weight:bold;
 margin-bottom:20px;
+font-family:Arial;
 }
+
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#4285F4;}
+.logo span:nth-child(5){color:#34A853;}
+.logo span:nth-child(6){color:#EA4335;}
 
 .search-box{
 width:100%;
-max-width:500px;
-border:1px solid #ddd;
-border-radius:30px;
+max-width:580px;
+border:1px solid #dfe1e5;
+border-radius:24px;
 padding:14px 20px;
 font-size:18px;
 outline:none;
-box-shadow:0 2px 8px rgba(0,0,0,0.15);
+box-shadow:0 1px 6px rgba(32,33,36,0.28);
+transition:0.2s;
+}
+
+.search-box:focus{
+box-shadow:0 2px 8px rgba(32,33,36,0.35);
 }
 
 /* RESULTS */
 #results{
 display:none;
-padding:15px;
+padding:20px;
 }
 
 .tabs{
 display:flex;
-gap:20px;
-border-bottom:1px solid #ddd;
+gap:25px;
+border-bottom:1px solid #dadce0;
 padding-bottom:10px;
 margin-bottom:20px;
 font-size:14px;
-overflow-x:auto;
 }
 
 .tab{
 cursor:pointer;
-padding-bottom:5px;
-white-space:nowrap;
+padding-bottom:8px;
+color:black;
 }
 
-.active{
-color:#1a73e8;
+.tab.active{
+border-bottom:3px solid black;
 font-weight:bold;
-border-bottom:2px solid #1a73e8;
 }
 
 .section{ display:none; }
@@ -75,18 +87,18 @@ border-bottom:2px solid #1a73e8;
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-gap:12px;
+gap:15px;
 }
 
 .grid img, .grid video{
 width:100%;
-border-radius:10px;
+border-radius:8px;
 cursor:pointer;
 }
 
 .link{
 font-size:12px;
-color:#1a0dab;
+color:black;
 word-break:break-all;
 }
 
@@ -113,7 +125,7 @@ max-height:95%;
 .envelope{
 width:220px;
 height:140px;
-background:#d4af37;
+background:#fbbc05;
 margin:60px auto;
 position:relative;
 cursor:pointer;
@@ -127,7 +139,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:#c49b2e;
+background:#ea4335;
 clip-path:polygon(0 0,50% 60%,100% 0);
 }
 
@@ -165,7 +177,9 @@ z-index:10000;
 
 <!-- GOOGLE HOME -->
 <div id="googleHome">
-<div class="logo">Google</div>
+<div class="logo">
+<span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+</div>
 <input id="searchInput" class="search-box" type="text">
 </div>
 
@@ -238,12 +252,11 @@ document.write(`
 
 </div>
 
-<!-- FULLSCREEN -->
 <div id="fullscreen" onclick="closeFullscreen()"></div>
 
 <script>
 
-/* MUSIC MOBILE FIX */
+/* MUSIC FIX */
 const music = document.getElementById("music");
 document.body.addEventListener("click", () => {
 music.play().catch(()=>{});
@@ -265,13 +278,11 @@ setTimeout(showResults,800);
 }
 window.onload=type;
 
-/* SHOW RESULTS */
 function showResults(){
 document.getElementById("googleHome").style.display="none";
 document.getElementById("results").style.display="block";
 }
 
-/* TABS */
 function showTab(id,e){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
@@ -279,7 +290,6 @@ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
 e.target.classList.add("active");
 }
 
-/* FULLSCREEN */
 function openFullscreen(src){
 let fs=document.getElementById("fullscreen");
 fs.style.display="flex";
@@ -289,11 +299,11 @@ fs.innerHTML=`<video src="${src}" controls autoplay></video>`;
 fs.innerHTML=`<img src="${src}">`;
 }
 }
+
 function closeFullscreen(){
 document.getElementById("fullscreen").style.display="none";
 }
 
-/* LETTER */
 function openLetter(){
 document.getElementById("envelope").style.display="none";
 document.getElementById("letterText").style.display="block";
