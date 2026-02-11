@@ -6,11 +6,7 @@
 <title>Google</title>
 
 <style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#fff;
-}
+body{margin:0;font-family:Arial;background:#fff}
 
 /* GOOGLE HOME */
 #googleHome{
@@ -20,175 +16,90 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 }
+.logo{font-size:70px;font-weight:bold}
+.logo span:nth-child(1){color:#4285F4}
+.logo span:nth-child(2){color:#EA4335}
+.logo span:nth-child(3){color:#FBBC05}
+.logo span:nth-child(4){color:#4285F4}
+.logo span:nth-child(5){color:#34A853}
+.logo span:nth-child(6){color:#EA4335}
 
-.logo{
-font-size:70px;
-font-weight:bold;
-}
-
-.logo span:nth-child(1){color:#4285F4;}
-.logo span:nth-child(2){color:#EA4335;}
-.logo span:nth-child(3){color:#FBBC05;}
-.logo span:nth-child(4){color:#4285F4;}
-.logo span:nth-child(5){color:#34A853;}
-.logo span:nth-child(6){color:#EA4335;}
-
-.searchBox{
-margin-top:30px;
-width:500px;
-max-width:90%;
-position:relative;
-}
-
+.searchBox{margin-top:30px;width:500px;max-width:90%;position:relative}
 .searchBox input{
-width:100%;
-padding:14px 45px 14px 20px;
-border-radius:30px;
-border:1px solid #dfe1e5;
-font-size:16px;
-box-shadow:0 1px 6px rgba(0,0,0,0.2);
-outline:none;
+width:100%;padding:14px 45px 14px 20px;border-radius:30px;
+border:1px solid #dfe1e5;font-size:16px;
+box-shadow:0 1px 6px rgba(0,0,0,0.2);outline:none;
 }
+.searchIcon{position:absolute;right:15px;top:12px;color:#777}
 
-.searchIcon{
-position:absolute;
-right:15px;
-top:12px;
-font-size:18px;
-color:#777;
-}
+/* RESULTS */
+#resultsPage{display:none}
+.topBar{display:flex;align-items:center;padding:15px 30px;gap:20px;border-bottom:1px solid #ddd}
+.topBar input{width:400px;padding:10px 20px;border-radius:30px;border:1px solid #ddd}
 
-/* GOOGLE RESULTS */
-#resultsPage{
-display:none;
-}
+.tabs{display:flex;gap:25px;padding:10px 40px;border-bottom:1px solid #ddd;font-size:14px}
+.tabs div{cursor:pointer;padding-bottom:6px}
+.tabs .active{border-bottom:3px solid #1a73e8;color:#1a73e8;font-weight:bold}
 
-.topBar{
-display:flex;
-align-items:center;
-padding:15px 30px;
-gap:20px;
-border-bottom:1px solid #ddd;
-}
+.section{display:none;padding:40px}
+.section.active{display:block}
 
-.topBar input{
-width:400px;
-padding:10px 20px;
-border-radius:30px;
-border:1px solid #ddd;
-}
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.card img,.card video{width:100%;border-radius:10px;cursor:pointer}
+.fakeLink{font-size:13px;color:#1a0dab}
 
-.tabs{
-display:flex;
-gap:25px;
-padding:10px 40px;
-border-bottom:1px solid #ddd;
-font-size:14px;
+/* MODAL */
+#modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.9);justify-content:center;align-items:center;
 }
-
-.tabs div{
-cursor:pointer;
-padding-bottom:6px;
-}
-
-.tabs .active{
-border-bottom:3px solid #1a73e8;
-color:#1a73e8;
-font-weight:bold;
-}
-
-.section{
-display:none;
-padding:40px;
-}
-
-.section.active{
-display:block;
-}
-
-/* FOTO GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-}
-
-.grid img{
-width:100%;
-border-radius:10px;
-}
+#modal img,#modal video{max-width:90%;max-height:90%}
 
 /* ZARF */
 .envelope{
-width:260px;
-height:180px;
-background:#ea4335;
-margin:40px auto;
-position:relative;
-cursor:pointer;
-border-radius:8px;
+width:260px;height:180px;background:#ea4335;margin:40px auto;
+position:relative;cursor:pointer;border-radius:8px;
 }
-
 .envelope:before{
-content:"";
-position:absolute;
-top:0;
-left:0;
+content:"";position:absolute;top:0;left:0;
 border-left:130px solid transparent;
 border-right:130px solid transparent;
 border-top:90px solid #ff6f61;
 transition:0.5s;
 }
+.envelope.open:before{transform:rotateX(180deg);top:-90px}
 
-.envelope.open:before{
-transform:rotateX(180deg);
-top:-90px;
-}
+.letter{display:none;max-width:700px;margin:20px auto;font-size:20px;line-height:1.8;direction:rtl}
 
-.letter{
-display:none;
-max-width:700px;
-margin:20px auto;
-font-size:20px;
-line-height:1.8;
-direction:rtl;
-}
-
-.spider{
-position:fixed;
-top:-50px;
-width:40px;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-to{transform:translateY(110vh);opacity:0;}
-}
+.spider{position:fixed;top:-50px;width:40px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh);opacity:0}}
 </style>
 </head>
 
 <body>
 
-<!-- GOOGLE ANA -->
+<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
+
+<!-- GOOGLE -->
 <div id="googleHome">
 <div class="logo">
 <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
 </div>
-
 <div class="searchBox">
 <input type="text" id="searchInput">
 <div class="searchIcon">🔍</div>
 </div>
 </div>
 
-<!-- SONUÇ SAYFASI -->
+<!-- RESULTS -->
 <div id="resultsPage">
 
 <div class="topBar">
 <div class="logo" style="font-size:30px;">
 <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
 </div>
-<input type="text" value="Mary kimdir?">
+<input type="text" value="ekmek yiyen köpek">
 </div>
 
 <div class="tabs">
@@ -202,68 +113,63 @@ to{transform:translateY(110vh);opacity:0;}
 <div id="all" class="section active">
 <h2>Mary</h2>
 <p><b>18 yaşında, Kürt 🤍</b></p>
-<p>Gezmeyi sever.</p>
-<p>Yabancı şarkıları sever.</p>
+<p>Gezmeyi sever, kahverengini ve kahveyi çok sever ☕🤎</p>
+<p>Kitap okumayı sever.</p>
+<p>Yabancı şarkılar dinler.</p>
 <p>Almanca, Fransızca ve Kürtçe bilir.</p>
 <p>K-Drama izlemeyi sever.</p>
-<p>Kendine obez diyor ama aslında değil.</p>
+<p>Kendine obez diyor ama değil.</p>
 <p>Fiziği güzel. Kendisi de güzel.</p>
-<p>Bazen kendini sevmiyor ama aslında düşündüğünden çok daha güzel biri.</p>
+<p>Bazen kendini sevmez ama aslında düşündüğünden çok daha güzel biri.</p>
 </div>
 
 <!-- FOTOĞRAFLAR -->
 <div id="photos" class="section">
 <div class="grid">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-<img src="foto3.jpg">
-<img src="foto4.jpg">
-<img src="foto5.jpg">
-<img src="foto6.jpg">
-<img src="foto7.jpg">
-<img src="foto8.jpg">
-<img src="foto9.jpg">
+
+<script>
+for(let i=1;i<=9;i++){
+document.write(`
+<div class="card">
+<img src="foto${i}.jpg" onclick="openModal(this.src)">
+<div class="fakeLink">https://ekmek.yiyen.kopek.com/foto${i}</div>
+</div>`);
+}
+</script>
+
+<div class="card">
+<video src="video.mp4" controls onclick="openModal(this.currentSrc)"></video>
+<div class="fakeLink">https://ekmek.yiyen.kopek.com/video</div>
 </div>
-<br>
-<video controls src="video.mp4" style="width:100%;max-width:600px;"></video>
-<br><br>
-<audio controls src="music.mp3"></audio>
+
+</div>
 </div>
 
 <!-- HAKKINDA -->
 <div id="about" class="section">
-<h2>Hakkında</h2>
-<p>Mary bazen kendini olduğundan farklı görüyor.</p>
-<p>Ama dışarıdan bakınca hem karakteri hem fiziği hem de enerjisi güzel biri.</p>
+<p>Mary bazen kendini göremiyor ama dışarıdan bakınca hem kalbi hem enerjisi hem görüntüsü güzel biri.</p>
 </div>
 
 <!-- MEKTUP -->
 <div id="letter" class="section">
 <h2>Mektup</h2>
-
 <div class="envelope" onclick="openLetter(this)"></div>
 
 <div class="letter" id="letterText">
-ئێمه‌ نوێ ناسین، بەڵام من زۆر حەزم لە قسەکانتە.  
-ڕاستی، لەو ئەپە بێمانایەی کە لێی ناسین، تۆ ڕاستترین کەسیت کە من ناسیم.  
-بڕوا بکە، وام دەڵێم ئێمە وەک دوو برا-خوشکی ونبووین 😜  
-لەوانەیەش نیوە-برا-خوشک بین 🙄  
-هەرچۆنێک بێت… هیوادارم لە ئینگلیستان دیپۆرت نەکرێیت!  
-هێشتا دێمە گەڕەکی ئێوە 😏  
-هیوادارم هەموو تاقیکردنەوەکانت وەک دەتەوێت تێپەڕبن.  
-بە هیوای من ببیتە ئەنجەمە ئەنجەمە باشترین پارێزەر.  
-من باوەڕم پێتە — بەڕاستی 😌  
-سەرکەوتن!  
+ئێمه‌ نوێ ناسین، بەڵام من زۆر حەزم لە قسەکانتە...  
 بزانە کە خۆشەویست دەکرێیت 🤍😜🤟🏻
+</div>
 </div>
 
 </div>
-</div>
+
+<!-- MODAL -->
+<div id="modal" onclick="closeModal()"></div>
 
 <script>
 
-/* OTOMATİK YAZMA + ARAMA */
-let text="Mary kimdir?";
+/* GOOGLE YAZMA */
+let text="ekmek yiyen köpek";
 let i=0;
 let input=document.getElementById("searchInput");
 
@@ -288,6 +194,18 @@ document.getElementById(id).classList.add("active");
 document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
 el.classList.add("active");
 }
+
+/* MODAL */
+function openModal(src){
+let modal=document.getElementById("modal");
+modal.style.display="flex";
+if(src.includes(".mp4")){
+modal.innerHTML=`<video src="${src}" controls autoplay></video>`;
+}else{
+modal.innerHTML=`<img src="${src}">`;
+}
+}
+function closeModal(){document.getElementById("modal").style.display="none"}
 
 /* ZARF */
 function openLetter(el){
